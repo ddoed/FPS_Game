@@ -22,6 +22,8 @@ public class InputManager : SingleTon<InputManager>
         onFoot.Jump.performed += ctx => motor.Jump();
     }
 
+
+
     private void FixedUpdate()
     {
         motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
