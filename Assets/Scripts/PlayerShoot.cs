@@ -7,6 +7,14 @@ public class PlayerShoot : MonoBehaviour
 {
     public Transform gunbarrel;
     private ReloadBarUI reloadBarUI;
+    public MuzzleEffect muzzleEffect;
+
+    [Header("Audio")]
+    public AudioSource shootAudio;
+    public AudioSource reloadAudio;
+
+    [Header("Animator")]
+    public Animator animator;
 
     private void Start()
     {
@@ -18,12 +26,17 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && reloadBarUI.bullet != 0)
         {
             Shoot();
+            StartCoroutine(ShootAnimation()); 
             reloadBarUI.DecreaseBullet();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            reloadAudio.Play();
+            StartCoroutine(ReloadAnimation());
             reloadBarUI.Reload();
+            
         }
     }
 
@@ -41,5 +54,27 @@ public class PlayerShoot : MonoBehaviour
 
         // 총알에 속도를 부여 (velocity 설정)
         bullet.GetComponent<Rigidbody>().velocity = shootDirection * 40;
+
+        muzzleEffect.MuzzleFlash();
+
+        shootAudio.Play();
+    }
+
+    IEnumerator ReloadAnimation()
+    {
+        animator.SetBool("Reloading", true);
+
+        yield return new WaitForSeconds(1);
+
+        animator.SetBool("Reloading", false);
+    }
+
+    IEnumerator ShootAnimation()
+    {
+        animator.SetBool("Shooting", true);
+
+        yield return new WaitForSeconds(0.05f);
+
+        animator.SetBool("Shooting", false);
     }
 }

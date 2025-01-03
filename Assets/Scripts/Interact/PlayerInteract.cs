@@ -24,7 +24,7 @@ public class PlayerInteract : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, distance, mask))
         {
             var interactable = hitInfo.collider.GetComponent<IInteract>();
-            if (interactable != null && InputManager.Instance.onFoot.Interact.triggered)
+            if (interactable != null && gameObject.GetComponent<InputManager>().onFoot.Interact.triggered)
             {
                 interactable.Interact();
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : SingleTon<InputManager>
+public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     public PlayerInput.OnFootActions onFoot;
@@ -11,10 +11,8 @@ public class InputManager : SingleTon<InputManager>
     private PlayerMotor motor;
     private PlayerLook look;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
         motor = GetComponent<PlayerMotor>();

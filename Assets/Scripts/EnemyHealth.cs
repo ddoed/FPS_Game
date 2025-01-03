@@ -21,6 +21,15 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health == 0)
         {
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                PlayerHealthUI playerHealthUI = player.GetComponent<PlayerHealthUI>();
+                if (playerHealthUI != null)
+                {
+                    playerHealthUI.UpdateScore();  // 플레이어 점수 10점 증가
+                }
+            }
             Destroy(gameObject);
         }
         else
