@@ -33,8 +33,6 @@ https://github.com/user-attachments/assets/0961304c-9438-4d24-8540-55eed796470b
 - Slime은 Patrol State, Attack State 두 상태
 - Patrol State : spawner 1, 2, 3 각각에 따른 path0, path1, path2 로 이동
 - Attack State : 일정 시야 범위에 따라 state 전환
-- Shader Graph
-- Post Processing
 
 <br>
 
